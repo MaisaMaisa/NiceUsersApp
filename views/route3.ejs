@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Here are thy results</h1>
+    <div>
+        <div>
+            <% if(key.length > 0) { %>
+            <% key.forEach(function(userData){ %>
+
+            <div>
+                <p>
+                    <%= userData.firstname + ' ' + 
+                    userData.lastname %>
+                </p>
+                <p>
+                    <%= userData.email %>
+                </p>
+            </div>
+        <% }); %>
+        <% } else { %>
+
+        <h2>User not an option</h2>
+        
+        <% } %>
+    </div>   
+    
+    
+
+</body>
+
+</html>
