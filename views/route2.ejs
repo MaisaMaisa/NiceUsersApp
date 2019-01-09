@@ -2,17 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
 
 <h1>Find thy victim</h1>
-<form action = "/route2" method= "post">
-    <input type= "text" placeholder="Search here, please" name="search"><br>
+<form action = "/route2" method= "post" autocomplete="off">
+    <input id = "this" type= "text" placeholder="Search here, please" name="search"><br>
+    <ul id="listOfNames"></ul>
     <input type= "submit">
 </form>
 
 </body>
+
+<script src="/javascript/jquery.js">
+</script>
 
 </html>

@@ -8,6 +8,8 @@ const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,'/views')));
+app.use(express.static(path.join(__dirname,'/public')));
+
 
 //this is middleware to handle request body
 app.use(express.urlencoded({
@@ -59,7 +61,7 @@ app.post('/route2', (req,res) => {
         obj.filter((user) => {
             let firstName = user.firstname.toLowerCase();
             let lastName = user.lastname.toLowerCase();
-            console.log(firstName);
+            //console.log(firstName);
 
             //check if firstname/lastname is the same as input
             if (firstName.includes(input) || lastName.includes(input)) {
@@ -71,6 +73,35 @@ app.post('/route2', (req,res) => {
         
         });
     })
+});
+
+// ajax 
+app.post('/ajax', (req,res) => {
+    let input = req.body.name.toLowerCase();
+    //console.log(input);
+
+    // Read json file and compare objects from file with input data.
+    fs.readFile('./users.json', 'utf8', (err, data) => {
+        if (err) throw err;
+        let obj = JSON.parse(data);
+        
+        // Empty array to store the match found
+        let matchFound = [];
+    
+        //filter
+        obj.filter((user) => {
+            let firstName = user.firstname.toLowerCase();
+            let lastName = user.lastname.toLowerCase();
+            //console.log(firstName);
+
+            //check if firstname/lastname is the same as input
+            if (firstName.includes(input) || lastName.includes(input)) {
+                console.log('These are the matches: ' + JSON.stringify(user));
+                matchFound.push(user);
+            }
+        });
+        res.send(matchFound);
+    }) 
 });
 
 
